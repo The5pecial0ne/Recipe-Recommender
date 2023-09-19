@@ -10,4 +10,4 @@ Future Scope includes but not limited to:
 - Video links of preparation for every recipe
 - Adding further Cuisine options
 
-Hosted using GitPages: https://the5pecial0ne.github.io/Recipe-Recommender/
+Hosted using GitHub Pages: https://the5pecial0ne.github.io/Recipe-Recommender/
