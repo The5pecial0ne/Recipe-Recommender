@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import {Splide, SplideSlide} from '@splidejs/react-splide';
-import {Link} from 'react-router-dom'
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { Link } from "react-router-dom";
 import "@splidejs/splide/dist/css/splide.min.css";
 
 function Veggie() {
-
   const [veggie, setVeggie] = useState([]);
 
   useEffect(() => {
@@ -14,63 +13,48 @@ function Veggie() {
 
   const isJson = (str) => {
     try {
-        JSON.parse(str);
+      JSON.parse(str);
     } catch (e) {
-        return false;
+      return false;
     }
     return true;
-}
+  };
 
-
- const getVeggie = async () => {
-
-    const check = localStorage.getItem("veggie");
-
-    if (check && isJson(check)) 
-    {
-      setVeggie(JSON.parse(check));
-    }
-
-    else
-    {
-      const api = await fetch(
-        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=20&tags=vegetarian`
-      );
-      const data = await api.json();
-
-      localStorage.setItem("veggie", JSON.stringify(data.recipes));
-      setVeggie(data.recipes);
-      console.log(data.recipes);
-    }
+  const getVeggie = async () => {
+    console.log(process.env.REACT_APP_API_URL);
+    const api = await fetch(`${process.env.REACT_APP_API_URL}/`);
+    const data = await api.json();
+    setVeggie(data);
   };
 
   return (
     <div>
-          <Wrapper>
-            <h3>Our Vegetarian Picks</h3>
-            <Splide options={{
-              perPage: 3,
-              arrows: false,
-              pagination: false,
-              draggable: "free",
-              gap: "5rem",
-            }}
-            >
-            {veggie.map((recipe) => {
-              return(
-                <SplideSlide key={recipe.id}>
-                  <Card>
-                    <Link to={'/recipe/'+recipe.id}>
-                      <p>{recipe.title}</p>
-                      <img src={recipe.image} alt={recipe.title} />
+      <Wrapper>
+        <h3>Our Vegetarian Picks</h3>
+        <Splide
+          options={{
+            perPage: 3,
+            arrows: false,
+            pagination: false,
+            draggable: "free",
+            gap: "5rem",
+          }}
+        >
+          {veggie.map((recipe) => {
+            return (
+              <SplideSlide key={recipe.id}>
+                <Card>
+                  <Link to={"/recipe/" + recipe.id}>
+                    <p>{recipe.title}</p>
+                    <img src={recipe.image} alt={recipe.title} />
                     <Gradient />
-                    </Link>
-                  </Card>
-                </SplideSlide>
-              );
-            })} 
-            </Splide>
-          </Wrapper>
+                  </Link>
+                </Card>
+              </SplideSlide>
+            );
+          })}
+        </Splide>
+      </Wrapper>
     </div>
   );
 }
@@ -85,7 +69,7 @@ const Card = styled.div`
   overflow: hidden;
   position: relative;
 
-  img{
+  img {
     border-radius: 2rem;
     position: absolute;
     left: 0;
@@ -93,7 +77,7 @@ const Card = styled.div`
     height: 100%;
     object-fit: cover;
   }
-  p{
+  p {
     position: absolute;
     z-index: 10;
     left: 50%;
@@ -116,7 +100,7 @@ const Gradient = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
-`
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+`;
 
-export default Veggie
+export default Veggie;
