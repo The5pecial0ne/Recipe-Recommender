@@ -3,12 +3,13 @@ import { useParams } from 'react-router-dom';
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+
 function Searched() {
     const [searchedRecipes, setSearchedRecipes] = useState([]);
     let params = useParams();
 
     const getSearched = async (name) => {
-        const data = await fetch(`${process.env.REACT_APP_API_URL}/search/${name}`);
+        const data = await fetch(`https://api-65kvjb6kfq-uc.a.run.app/api/search/${name}`);
         const recipes = await data.json();
         setSearchedRecipes(recipes);
     };

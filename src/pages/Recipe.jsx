@@ -2,6 +2,7 @@ import { useEffect, useState, React } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 
+
 function Recipe() {
   let params = useParams();
   const [details, setDetails] = useState({});
@@ -9,7 +10,7 @@ function Recipe() {
 
   const fetchDetails = async () => {
     const data = await fetch(
-      `${process.env.REACT_APP_API_URL}/search/single/${params.name}`
+      `https://api-65kvjb6kfq-uc.a.run.app/api/search/single/${params.name}`
     );
     const detailData = await data.json();
     console.log(detailData);

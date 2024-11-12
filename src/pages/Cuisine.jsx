@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { Link, useParams } from 'react-router-dom';
 
+
 function Cuisine() {
   const [cuisine, setCuisine] = useState([]);
   let params = useParams();
 
   const getCuisine = async (name) => {
     console.log(name);
-    const data = await fetch(`${process.env.REACT_APP_API_URL}/cuisine/${name}`);
+    const data = await fetch(`https://api-65kvjb6kfq-uc.a.run.app/api/cuisine/${name}`);
     const recipes = await data.json();
     console.log(recipes);
     setCuisine(recipes);

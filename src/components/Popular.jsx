@@ -4,6 +4,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { Link } from "react-router-dom";
 import "@splidejs/splide/dist/css/splide.min.css";
 
+
 function Popular() {
   const [popular, setPopular] = useState([]);
 
@@ -21,7 +22,7 @@ function Popular() {
   };
 
   const getPopular = async () => {
-    const api = await fetch(`${process.env.REACT_APP_API_URL}/popular`);
+    const api = await fetch(`https://api-65kvjb6kfq-uc.a.run.app/api/popular`);
     const data = await api.json();
     setPopular(data);
   };

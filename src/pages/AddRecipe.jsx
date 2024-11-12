@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 function RecipeForm() {
   const [formData, setFormData] = useState({
     title: "",
@@ -23,7 +24,7 @@ function RecipeForm() {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/addNew`, {
+      const response = await fetch(`https://api-65kvjb6kfq-uc.a.run.app/api/addNew`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

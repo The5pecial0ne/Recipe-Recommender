@@ -21,8 +21,7 @@ function Veggie() {
   };
 
   const getVeggie = async () => {
-    console.log(process.env.REACT_APP_API_URL);
-    const api = await fetch(`${process.env.REACT_APP_API_URL}/`);
+    const api = await fetch(`https://api-65kvjb6kfq-uc.a.run.app/api/`);
     const data = await api.json();
     setVeggie(data);
   };
